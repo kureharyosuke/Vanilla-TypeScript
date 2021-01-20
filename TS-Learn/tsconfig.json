@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": true
+  }
+}
+
+//https://www.typescriptlang.org/docs/handbook/compiler-options.html
+// Typescript Options Setting

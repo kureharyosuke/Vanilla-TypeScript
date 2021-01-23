@@ -64,7 +64,7 @@ Object.keys(obj).forEach(function(value) {
 
 })
 
-// 인터페이스 확장
+// # 인터페이스 확장 = 또는 상속
 interface Person {
     name: string;
     age: number;

@@ -53,7 +53,11 @@ logTexts(10); // Error: Argument of type 'number' is not assignable to parameter
 logNumbers(10); // function logNumbers(num: number): number
 const num = logNumbers(10); // const num: number
 
-//
+/**
+ *  제너릭에 대한 사용법
+ * @param text 
+ */
+
 function logTextA<T>(text: T): T {
     console.log(text);
     return text;

@@ -25,7 +25,8 @@ logText<object[]>([]); // function logText<object[]>(text: object[]): object[]
 
 function logTexts(text:string | number) {
     console.log(text)
-    text.split('').reverse().join(''); 
+    // text.
+    // text.split('').reverse().join(''); // Error is Union Type number
     // Property 'split' does not exist on type 'string | number'.
     // Property 'split' does not exist on type 'number'.
     return text
@@ -37,9 +38,13 @@ function logNumbers(num: number) {
 }
 
 function logInterSection(interSection: string & number) {
+    //function logInterSection(interSection: string & number): never
     console.log(interSection);
     return interSection;
 }
+
+const b = logTexts('a')
+// a.split();
 
 logTexts('a');
 logTexts(10); // Error: Argument of type 'number' is not assignable to parameter of type 'string'.
@@ -47,3 +52,15 @@ logTexts(10); // Error: Argument of type 'number' is not assignable to parameter
 
 logNumbers(10); // function logNumbers(num: number): number
 const num = logNumbers(10); // const num: number
+
+//
+function logTextA<T>(text: T): T {
+    console.log(text);
+    return text;
+}
+
+const str = logTextA<string>('abc');
+str.split(''); // (method) String.split(separator: string | RegExp, limit?: number): string[] (+1 overload)
+
+const login = logTextA<boolean>(true);
+login.valueOf(); //(method) Boolean.valueOf(): boolean

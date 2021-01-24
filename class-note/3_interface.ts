@@ -76,7 +76,7 @@ interface Developer extends Person {
     language: string;
 }
 
-var captin: Developer = {
+var Yun: Developer = {
     language: 'TS',
     name: "Captin",
     age: 32,

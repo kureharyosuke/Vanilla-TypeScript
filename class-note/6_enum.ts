@@ -66,6 +66,6 @@ function askQuestion2(answer: string) {
     }
 }
 askQuestion(Answer.Yes)
-askQuestion('Yes')
+// askQuestion('Yes')
 // askQuestion('Not')
 // askQuestion('No')

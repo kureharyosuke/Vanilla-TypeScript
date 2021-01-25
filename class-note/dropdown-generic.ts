@@ -13,7 +13,7 @@ const emails: DropdownItem<string>[] = [
   { value: "naver.com", selected: false },
 ];
 
-const;
+// const;
 
 // interface Email {
 //   value: string;

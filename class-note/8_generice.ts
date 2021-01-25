@@ -64,7 +64,7 @@ function logTextA<T>(text: T): T {
 }
 
 const str1 = logTextA<string>("abc");
-str.split(""); // (method) String.split(separator: string | RegExp, limit?: number): string[] (+1 overload)
+str1.split(""); // (method) String.split(separator: string | RegExp, limit?: number): string[] (+1 overload)
 
 const login = logTextA<boolean>(true);
 login.valueOf(); //(method) Boolean.valueOf(): boolean
@@ -85,3 +85,57 @@ interface Dropdown2<T> {
 // value =  T; = Dropdown2<string> = { value: "abc"
 
 const obj2: Dropdown2<string> = { value: "abc", selected: false };
+
+// 제너릭의 타입 제한
+
+interface Dropdown3<T> {
+    value: T;
+    selected: boolean;
+}
+
+const obj3: Dropdown3<string> = { value: 'abc', selected: false}
+
+// 제너릭의 타입 제한
+
+function logTextLength<T>(text: T[]):T[] {
+    console.log(text.length);
+    text.forEach(function (text) {
+        console.log(text)
+    })
+    return text;
+}
+
+logTextLength(['Hi', 'Ts']);
+
+// 제너릭  타입 제한 2 - 정의된 타입 이용하기
+interface LengthType {
+    length: number;
+}
+function logTextLengths<T extends LengthType>(text: T): T {
+    // <T extends LengthType>  extends LengthType 로 추가로 정의
+    text.length;
+    return text;
+}
+
+logTextLengths('a');
+// logTextLengths(10); //Argument of type 'number' is not assignable to parameter of type 'LengthType'.
+logTextLengths({length: 10});
+// logTextLengths({leng: 10});
+//Argument of type '{ leng: number; }' is not assignable to parameter of type 'LengthType'.
+//  Object literal may only specify known properties, and 'leng' does not exist in type 'LengthType'.
+
+// 제너릭 타입 제한 3 - keyof
+interface ShoppingItem {
+    name: string;
+    price: number;
+    stock: number;
+}
+
+function getShoppingItemOption<T extends keyof ShoppingItem>(itemOption: T): T {
+    //1. <T> 제너릭 (itemOption: T 타입): T 반환값
+    //2. <T extends keyof ShoppingItem = name, price, stock 한가지만 들어올수 있다. keyof
+    return itemOption;
+}
+// getShoppingItemOption(10); //Argument of type '10' is not assignable to parameter of type '"name" | "price" | "stock"'.
+// getShoppingItemOption<string>('a');
+getShoppingItemOption('name');

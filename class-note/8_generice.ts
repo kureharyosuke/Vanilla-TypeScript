@@ -51,7 +51,7 @@ logTexts(10); // Error: Argument of type 'number' is not assignable to parameter
 // Union Type (text:string | number) not error
 
 logNumbers(10); // function logNumbers(num: number): number
-const num = logNumbers(10); // const num: number
+const num1 = logNumbers(10); // const num: number
 
 /**
  *  제너릭에 대한 사용법
@@ -63,7 +63,7 @@ function logTextA<T>(text: T): T {
   return text;
 }
 
-const str = logTextA<string>("abc");
+const str1 = logTextA<string>("abc");
 str.split(""); // (method) String.split(separator: string | RegExp, limit?: number): string[] (+1 overload)
 
 const login = logTextA<boolean>(true);
@@ -75,11 +75,13 @@ interface Dropdown {
   selected: boolean;
 }
 
-const obj: Dropdown = { value: "abc", selected: false };
+const obj1: Dropdown = { value: "abc", selected: false };
 
 interface Dropdown2<T> {
   value: T;
   selected: boolean;
 }
+
+// value =  T; = Dropdown2<string> = { value: "abc"
 
 const obj2: Dropdown2<string> = { value: "abc", selected: false };

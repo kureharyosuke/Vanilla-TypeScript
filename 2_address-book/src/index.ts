@@ -13,7 +13,7 @@ interface Contact {
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
 function fetchContacts(): Promise<Contact[]> {
-  // TODO: 아래 변수의 타입을 지정해보세요.
+  // NOTE: Promise<T> Generic Type is <Contact[]>
   const contacts: Contact[] = [
     {
       name: 'Tony',
@@ -57,24 +57,27 @@ function fetchContacts(): Promise<Contact[]> {
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  contacts = [];
+  contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData(): void {
+    // fetchData() 는 반환값이 없기때문에 void
     fetchContacts().then(response => {
       this.contacts = response;
     });
   }
 
-  /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name) {
+  /* NOTE: name은 String이고 반환값은 Contact[]이다.  */
+  findContactByName(name:string): Contact[] {
+    // name = string , 반환값은 Contact[]
     return this.contacts.filter(contact => contact.name === name);
   }
 
-  findContactByAddress(address) {
+  findContactByAddress(address: string): Contact[] {
+    // address = string, 반환값은 Contact[]
     return this.contacts.filter(contact => contact.address === address);
   }
 

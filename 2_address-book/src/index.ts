@@ -127,4 +127,11 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
+var div = document.querySelector('div') as HTMLDivElement; //var div: HTMLDivElement | null
+// as HTMLDivElement; 단언 헀으니까 var div: HTMLDivElement
+div.innerText; //var div: HTMLDivElement | null -> as HTMLDivElement : var div: HTMLDivElement
+if (div) {
+  div.innerText;
+}
+
 new AddressBook();

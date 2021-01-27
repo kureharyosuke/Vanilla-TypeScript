@@ -96,22 +96,32 @@ class AddressBook {
     );
   }
 
-  // findContactByPhone('offiice');
+  // findContactByPhone('offiice'); 오류를 발생하지 않기위해
   // findContactByPhone('homeeee');
   // findContactByPhone(PhoneType.home);
 
 
   addContact(contact: Contact):void {
-    // addContact는 array에 추가(push)하는 것이기때문에 contact의 type은 Contact
-    // return(반환값)은 없기때문에 :void 
+    // 1. addContact는 array에 추가(push)하는 것이기때문에 contact의 type은 Contact
+    // 2. return(반환값)은 없기때문에 :void 
     this.contacts.push(contact);
   }
 
-  displayListByName() {
+  /* ------------------------------------------------ */
+  /*ex) let contact = [
+    { name: 'Tony', address: 'tokyo'},
+    { name: 'Captin', address: 'osaka'}
+  ] 
+  contact.map(function (name) {
+    return name.name;
+  }); // ['Tony', 'Captain']
+  */
+  displayListByName(): string[] {
     return this.contacts.map(contact => contact.name);
   }
 
-  displayListByAddress() {
+  displayListByAddress(): string[] {
+    // map 을 돌려서 오기때문에 address의 string 배열
     return this.contacts.map(contact => contact.address);
   }
   /* ------------------------------------------------ */

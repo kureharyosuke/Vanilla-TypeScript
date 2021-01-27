@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": true, // 묵시적으로 any로도 해라는 것
+    "strict": true, 
+    "strictFunctionTypes": true,
+  },
+  "include": ["./src/**/*"]
+}
+
+// {
+//   "compilerOptions": {
+//     "allowJs": true,
+//     "checkJs": true,
+//     "target": "es5",
+//     "lib": ["es2015", "dom", "dom.iterable"],
+//     "noImplicitAny": false
+//   },
+//   "include": ["./src/**/*"]
+// }

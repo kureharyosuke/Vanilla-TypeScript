@@ -11,11 +11,10 @@ interface Contact {
 }
 
 enum PhoneType {
-  Home = 'home',
-  Office = 'office',
-  Studio = 'studio'
+  Home = "home",
+  Office = "office",
+  Studio = "studio",
 }
-
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
@@ -23,8 +22,8 @@ function fetchContacts(): Promise<Contact[]> {
   // NOTE: Promise<T> Generic Type is <Contact[]>
   const contacts: Contact[] = [
     {
-      name: 'Tony',
-      address: 'Malibu',
+      name: "Tony",
+      address: "Malibu",
       phones: {
         home: {
           num: 11122223333,
@@ -35,8 +34,8 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
     {
-      name: 'Banner',
-      address: 'New York',
+      name: "Banner",
+      address: "New York",
       phones: {
         home: {
           num: 77788889999,
@@ -44,8 +43,8 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
     {
-      name: '마동석',
-      address: '서울시 강남구',
+      name: "마동석",
+      address: "서울시 강남구",
       phones: {
         home: {
           num: 213423452,
@@ -56,7 +55,7 @@ function fetchContacts(): Promise<Contact[]> {
       },
     },
   ];
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(contacts), 2000);
   });
 }
@@ -73,26 +72,26 @@ class AddressBook {
 
   fetchData(): void {
     // fetchData() 는 반환값이 없기때문에 void
-    fetchContacts().then(response => {
+    fetchContacts().then((response) => {
       this.contacts = response;
     });
   }
 
   /* NOTE: name은 String이고 반환값은 Contact[]이다.  */
-  findContactByName(name:string): Contact[] {
+  findContactByName(name: string): Contact[] {
     // name = string , 반환값은 Contact[]
-    return this.contacts.filter(contact => contact.name === name);
+    return this.contacts.filter((contact) => contact.name === name);
   }
 
   findContactByAddress(address: string): Contact[] {
     // address = string, 반환값은 Contact[]
-    return this.contacts.filter(contact => contact.address === address);
+    return this.contacts.filter((contact) => contact.address === address);
   }
 
   // home, office, studio
   findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
-      contact => contact.phones[phoneType].num === phoneNumber
+      (contact) => contact.phones[phoneType].num === phoneNumber
     );
   }
 
@@ -100,10 +99,9 @@ class AddressBook {
   // findContactByPhone('homeeee');
   // findContactByPhone(PhoneType.home);
 
-
-  addContact(contact: Contact):void {
+  addContact(contact: Contact): void {
     // 1. addContact는 array에 추가(push)하는 것이기때문에 contact의 type은 Contact
-    // 2. return(반환값)은 없기때문에 :void 
+    // 2. return(반환값)은 없기때문에 :void
     this.contacts.push(contact);
   }
 
@@ -117,17 +115,17 @@ class AddressBook {
   }); // ['Tony', 'Captain']
   */
   displayListByName(): string[] {
-    return this.contacts.map(contact => contact.name);
+    return this.contacts.map((contact) => contact.name);
   }
 
   displayListByAddress(): string[] {
     // map 을 돌려서 오기때문에 address의 string 배열
-    return this.contacts.map(contact => contact.address);
+    return this.contacts.map((contact) => contact.address);
   }
   /* ------------------------------------------------ */
 }
 
-var div = document.querySelector('div') as HTMLDivElement; //var div: HTMLDivElement | null
+const div = document.querySelector("div") as HTMLDivElement; //var div: HTMLDivElement | null
 // as HTMLDivElement; 단언 헀으니까 var div: HTMLDivElement
 div.innerText; //var div: HTMLDivElement | null -> as HTMLDivElement : var div: HTMLDivElement
 if (div) {

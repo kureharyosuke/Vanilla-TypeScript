@@ -23,3 +23,14 @@ if ((tony as Developer).skill) {
   var age = (tony as Person).age;
   console.log(age);
 }
+
+// 타입가드
+function isDevelopoer(target: Developer | Person): target is Developer {
+  return (target as Developer).skill !== undefined;
+}
+
+if (isDevelopoer(tony)) {
+  tony.skill;
+} else {
+  tony.age;
+}

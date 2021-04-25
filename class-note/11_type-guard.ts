@@ -14,7 +14,7 @@ function introduce(): Developer | Person {
 }
 
 var tony = introduce();
-// console.log(tony.skill);// 공동적으로 포함된 것만
+// console.log(tony.skill); // #공동적으로 속성 제공
 
 if ((tony as Developer).skill) {
   var skill = (tony as Developer).skill;
@@ -24,10 +24,13 @@ if ((tony as Developer).skill) {
   console.log(age);
 }
 
-// 타입가드
+// 타입 가드 정의 =>  is
 function isDevelopoer(target: Developer | Person): target is Developer {
+  //target(파라미터)가 is(타입가드)
   return (target as Developer).skill !== undefined;
 }
+
+//
 
 if (isDevelopoer(tony)) {
   tony.skill;

@@ -39,12 +39,12 @@ function updateTodo(todo: PartialT, fieldsToUpdate: Partial<PartialT>) {
   return {...todo, ...fieldsToUpdate};
 }
 
-const PartialT1 = {
+const PartialT_variable = {
   title: 'organize desk',
   description: 'clear clutter',
 }
 
-const PartialT2 = updateTodo(PartialT1, {
+const PartialT_variable2 = updateTodo(PartialT_variable, {
 //function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>): {
   // title: string;
   // description: string;
@@ -63,7 +63,7 @@ interface ReadonlyT {
   title: string;
 }
 
-const ReadonlyT: Readonly<ReadonlyT> = {
+const ReadonlyT_variable: Readonly<ReadonlyT> = {
   //type Readonly<T> = { readonly [P in keyof T]: T[P]; }
   // Readonly<interface & Type>
   title: 'Delete inactive users',
@@ -76,4 +76,24 @@ const ReadonlyT: Readonly<ReadonlyT> = {
 
 // object.freeze
 
-function freeze<T>(obj: T): Readonly<T>
+// : function freeze<T>(obj: T): Readonly<T>
+
+
+// # Record<K, T>
+
+/**
+ * 타입 [T]의 프로퍼티의 집합 K로 타입을 구성합니다. 
+ * 이 유틸리티는 타입의 프로퍼티들을 다른 타입에 매핑시키는 데 사용할 수 있습니다.
+ */
+
+interface RecordKT {
+  title: string ;
+}
+
+type Page = 'home' | 'about' | 'contact'
+
+const RecordKTV: Record<Page, RecordKT> = {
+  about: {title: 'about'},
+  contact: {title: 'contact'},
+  home: {title: 'home'}
+}

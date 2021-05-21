@@ -22,3 +22,32 @@
  * - OmitThisParameter 
  * - ThisType<T>
  */
+
+// # Partial<T>
+
+/**
+ *  [T]의 모든 프로퍼티를 선택적으로 만드는 타입을 구성합니다.
+ *  이 유틸리티는 주어진 타입의 모든 하위 타입 집합을 나타내는 타입을 반환합니다.
+ */
+
+interface Todo {
+  title: string;
+  description: string;
+}
+
+function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+  return {...todo, ...fieldsToUpdate};
+}
+
+const todo1 = {
+  title: 'organize desk',
+  description: 'clear clutter',
+}
+
+const todo2 = updateTodo(todo1, {
+//function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>): {
+  // title: string;
+  // description: string;
+// }
+  description: 'throw out trash',
+})

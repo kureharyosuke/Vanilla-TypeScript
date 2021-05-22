@@ -42,12 +42,12 @@ T는 Type의 약자로 다른 언어에서도 제네릭을 선언할 때 관용�
  *  이 유틸리티는 주어진 타입의 모든 하위 타입 집합을 나타내는 타입을 반환합니다.
  */
 
-interface PartialT {
+interface Partial_T {
   title: string;
   description: string;
 }
 
-function updateTodo(todo: PartialT, fieldsToUpdate: Partial<PartialT>) {
+function updateTodo(todo: Partial_T, fieldsToUpdate: Partial<Partial_T>) {
   return {...todo, ...fieldsToUpdate};
 }
 
@@ -122,9 +122,28 @@ interface PickTK {
   completed: boolean;
 }
 
-type PickPreview = Pick<PickTK, 'title' | 'completed'>
+type PickPreview = Pick<PickTK, 'title' | 'completed'> // PickTK 타입중에 선택한 타입
 
 const PickTK_variable : PickPreview = {
+  title: 'Clean room',
+  completed: false,
+}
+
+// # Omit<T, K>
+
+/**
+ * T에서 모든 프로퍼티를 선택한 다음, K를 제거한 타입을 구성합니다.
+ */
+
+interface OmitTK {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+type OmitPreview = Omit<OmitTK, 'description'> // 'description' 제외한 타입
+
+const OmitTK_variavle : OmitPreview = {
   title: 'Clean room',
   completed: false,
 }

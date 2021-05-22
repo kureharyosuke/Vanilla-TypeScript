@@ -166,3 +166,12 @@ type ExcludeT2 = Exclude<string | number | (() => void), Function> // string | n
 
 type ExtractT0 = Extract<"a"|"b"|"c", "a"|"f">; // "a" => "a"
 type ExtractT1 = Extract<string | number | (() => void), Function>;  // () => void
+
+// # NonNullable<T>
+
+/**
+ * T에서 null과 undefined를 제외한 타입을 구성합니다.
+ */
+
+type NonNullableT0 = NonNullable<string | number | undefined> // string | number
+type NonNullableT1 = NonNullable<string[] | null | undefined>; // string[]

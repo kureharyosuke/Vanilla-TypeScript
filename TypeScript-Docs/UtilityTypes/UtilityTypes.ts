@@ -154,6 +154,15 @@ const OmitTK_variavle : OmitPreview = {
  * T에서 U에 할당할 수 있는 모든 속성을 제외한 타입을 구성합니다.
  */
 
-type ExcludeT0 = Exclude<"a"|"b"|"c", "a"> // "b" | "c"
-type ExcludeT1 = Exclude<"a"|"b"|"c", "a"|"b"> // "c"
-type ExcludeT2 = Exclude<string | number | (() => void), Function>
+type ExcludeT0 = Exclude<"a"|"b"|"c", "a"> // "b" | "c" => "a"를 제외했으니까
+type ExcludeT1 = Exclude<"a"|"b"|"c", "a"|"b"> // "c" => "a"|"b"를 제외했으니까
+type ExcludeT2 = Exclude<string | number | (() => void), Function> // string | number
+
+// # Extract<T,U>
+
+/**
+ * T에서 U에 할당 할 수 있는 모든 속성을 추출하여 타입을 구성합니다.
+ */
+
+type ExtractT0 = Extract<"a"|"b"|"c", "a"|"f">; // "a" => "a"
+type ExtractT1 = Extract<string | number | (() => void), Function>;  // () => void

@@ -141,9 +141,19 @@ interface OmitTK {
   completed: boolean;
 }
 
-type OmitPreview = Omit<OmitTK, 'description'> // 'description' 제외한 타입
+type OmitPreview = Omit<OmitTK, 'description'> // 'description' 제외한 타입을 사용
 
 const OmitTK_variavle : OmitPreview = {
   title: 'Clean room',
   completed: false,
 }
+
+// # Exclude<T, U>
+
+/**
+ * T에서 U에 할당할 수 있는 모든 속성을 제외한 타입을 구성합니다.
+ */
+
+type ExcludeT0 = Exclude<"a"|"b"|"c", "a"> // "b" | "c"
+type ExcludeT1 = Exclude<"a"|"b"|"c", "a"|"b"> // "c"
+type ExcludeT2 = Exclude<string | number | (() => void), Function>

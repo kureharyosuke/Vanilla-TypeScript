@@ -62,3 +62,25 @@ function pickProductDetail(
   shoppingItem: ShoppingItem
   // Product에서  "id" | "name" | "price"를 뽑아낸 타입정의
 ) {}
+
+// Omit : 오밋
+// Omit 타입은 특정 타입에서 지정된 속성만 제거한 타입을 정의해줍니다.
+
+interface AddressBook {
+  name: string;
+  phone: number;
+  address: string;
+  company: string;
+}
+
+const phoneBook: Omit<AddressBook, "address"> = {
+  // "address"를 제외한 타입 사용
+  name: "재택근무",
+  phone: 23421489,
+  company: "내방",
+};
+
+const chingtao: Omit<AddressBook, "address" | "company"> = {
+  name: "중국집",
+  phone: 34345345098,
+};

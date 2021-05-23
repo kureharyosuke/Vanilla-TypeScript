@@ -34,14 +34,14 @@ interface Product {
   // something: object;
 }
 
-// 상품 목록을 받아오기 위한 API 함수
-// function fetchProducts(): Promise<Product[]> {}
+// 1. 상품 목록을 받아오기 위한 API 함수
+function fetchProducts(): Promise<Product[]> {}
 
-interface ProductDetail {
-  id: number;
-  name: string;
-  price: number;
-}
+// interface ProductDetail {
+//   id: number;
+//   name: string;
+//   price: number;
+// }
 
 // function displayProductDetail(shoppingItem: {
 //   id: number;
@@ -51,12 +51,17 @@ interface ProductDetail {
 
 // function displayProductDetail(shoppingItem: ProductDetail) {}
 
+// 2. 특정 상품의 상세 정보를 나타내기 위한 함수
+
+// type Pick<T, K extends keyof T> = {
+//   [P in K]: T[P];
+// };
+
+type ShoppingItem = Pick<Product, "id" | "name" | "price">;
 function displayProductDetail(
   shoppingItem: Pick<Product, "id" | "name" | "price">
   // Product에서  "id" | "name" | "price"를 뽑아낸 타입정의
 ) {}
-
-type ShoppingItem = Pick<Product, "id" | "name" | "price">;
 
 function pickProductDetail(
   shoppingItem: ShoppingItem
@@ -73,8 +78,10 @@ interface AddressBook {
   company: string;
 }
 
+//type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
 const phoneBook: Omit<AddressBook, "address"> = {
-  // "address"를 제외한 타입 사용
+  // "address"를 선택한 것을 제외한 타입 사용
   name: "재택근무",
   phone: 23421489,
   company: "내방",
@@ -84,3 +91,24 @@ const chingtao: Omit<AddressBook, "address" | "company"> = {
   name: "중국집",
   phone: 34345345098,
 };
+
+// 3. 특정 상품 정보를 업데이트(갱신)하는 함수
+
+// interface UpdateProduct {
+//   id?: number;
+//   name?: string;
+//   price?: number;
+//   brand?: string;
+//   stock?: number;
+//   image?: string;
+// }
+
+//OptionalProduct
+type UndateProduct = Partial<Product>;
+
+//
+// type Partial<T> = {
+//   [P in keyof T]?: T[P];
+// };
+
+function updateProductItem(productItem: Partial<Product>) {}

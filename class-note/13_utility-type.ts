@@ -112,3 +112,50 @@ type UndateProduct = Partial<Product>;
 // };
 
 function updateProductItem(productItem: Partial<Product>) {}
+
+// 4. 유틸리티 타입 구현하기 - Partial
+interface UserProfile {
+  username: string;
+  email: string;
+  phone: number;
+  profilePhotoUrl: string;
+}
+
+//
+// interface UserProfileUpdate {
+//   username?: string;
+//   email?: string;
+//   profilePhotoUrl?: string;
+// }
+
+// #1 파셜의 동작방식 : 옵셔널 타입
+
+type UserProfileUpdate = {
+  username?: UserProfile["username"]; //  UserProfile.username: string
+  email?: UserProfile["email"]; // UserProfile.email: string
+  phone?: UserProfile["phone"]; // UserProfile.phone: number
+  profilePhotoUrl?: UserProfile["profilePhotoUrl"]; // UserProfile.profilePhotoUrl: string
+};
+
+// #2 파셜의 동작방식 : 맵드 타입
+
+type UserProfileUpdate2 = {
+  [p in "username" | "email" | "phone" | "profilePhotoUrl"]?: UserProfile[p];
+};
+
+type UserProfileKeys = keyof UserProfile;
+
+// #3 파셜의 동작방식 : 축약
+
+type UserProfileUpdate3 = {
+  [p in keyof UserProfile]?: UserProfile[p];
+};
+
+// #4 파셜의 방식
+
+type Subset<T> = {
+  [p in keyof T]?: T[p];
+};
+//type Partial<T> = {
+// [P in keyof T]?: T[P];
+// };

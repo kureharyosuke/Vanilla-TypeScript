@@ -6,21 +6,21 @@
 
 // # Table of Contents : 목차
 /**
- * - Partial<T>
- * - Readonly<T>
- * - Record<K,T>
- * - Omit<T,K>
- * - Exclude<T, U>
- * - Extract<T, U>
- * - NonNullable<T>
- * - Parameters<T>
- * - ConstructorParameters<T>
- * - ReturnType<T> 
- * - InstanceType<T> 
- * - Required<T> 
- * - ThisParameterType 
- * - OmitThisParameter 
- * - ThisType<T>
+ * - Partial<Type>
+ * - Readonly<Type>
+ * - Record<Keys, Type>
+ * - Omit<Type, Keys>
+ * - Exclude<Type, ExcludedUnion>
+ * - Extract<Type, Union>
+ * - NonNullable<Type>
+ * - Parameters<Type>
+ * - ConstructorParameters<Type>
+ * - ReturnType<Type>
+ * - InstanceType<Type>
+ * - Required<Type>
+ * - ThisParameterType<Type>
+ * - OmitThisParameter<Type>
+ * - ThisType<Type>
  */
 
 /**클래스 식별자 선언부에 <T>라는 못보던 문법이 추가된 것을 확인할 수 있다. 
@@ -32,10 +32,9 @@ T는 Type의 약자로 다른 언어에서도 제네릭을 선언할 때 관용�
 하지만 대개의 경우 T를 사용한다. 
 여기에서 T를 타입 변수(Type variables)라고 한다. */
 
-
 //T는 Type의 약자
 
-// # Partial<T>
+// # Partial<Type>
 
 /**
  *  [T: Type]의 모든 프로퍼티를 선택적으로 만드는 타입을 구성합니다.
@@ -48,26 +47,26 @@ interface Partial_T {
 }
 
 function updateTodo(todo: Partial_T, fieldsToUpdate: Partial<Partial_T>) {
-  return {...todo, ...fieldsToUpdate};
+  return { ...todo, ...fieldsToUpdate };
 }
 
 const PartialT_variable = {
-  title: 'organize desk',
-  description: 'clear clutter',
-}
+  title: "organize desk",
+  description: "clear clutter",
+};
 
 const PartialT_variable2 = updateTodo(PartialT_variable, {
-//function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>): {
+  //function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>): {
   // title: string;
   // description: string;
-// }
-  description: 'throw out trash',
-})
+  // }
+  description: "throw out trash",
+});
 
-// # Readonly<T>
+// # Readonly<Type>
 
 /**
- * [T:Type]의 모든 프로퍼리를 읽기전용(readonly) 으로 설정한 타입을 구성합니다. 
+ * [T:Type]의 모든 프로퍼리를 읽기전용(readonly) 으로 설정한 타입을 구성합니다.
  * 즉 생성된 타입의 프로퍼티를 재할당할 수 없습니다.
  */
 
@@ -78,8 +77,8 @@ interface ReadonlyT {
 const ReadonlyT_variable: Readonly<ReadonlyT> = {
   //type Readonly<T> = { readonly [P in keyof T]: T[P]; }
   // Readonly<interface & Type>
-  title: 'Delete inactive users',
-}
+  title: "Delete inactive users",
+};
 
 /**
  * 이 유틸리티는 런타임에, 실패할 할당 표현식을 나타낼 때 유용합니다.
@@ -90,27 +89,26 @@ const ReadonlyT_variable: Readonly<ReadonlyT> = {
 
 // : function freeze<T>(obj: T): Readonly<T>
 
-
-// # Record<K, T>
+// # Record<Kyes, T>
 
 /**
- * 타입 [T]의 프로퍼티의 집합 K로 타입을 구성합니다. 
+ * 타입 [T]의 프로퍼티의 집합 K로 타입을 구성합니다.
  * 이 유틸리티는 타입의 프로퍼티들을 다른 타입에 매핑시키는 데 사용할 수 있습니다.
  */
 
 interface RecordKT {
-  title: string ;
+  title: string;
 }
 
-type Page = 'home' | 'about' | 'contact'
+type Page = "home" | "about" | "contact";
 
 const RecordKT_variable: Record<Page, RecordKT> = {
-  about: {title: 'about'},
-  contact: {title: 'contact'},
-  home: {title: 'home'}
-}
+  about: { title: "about" },
+  contact: { title: "contact" },
+  home: { title: "home" },
+};
 
-// # Pick<T, K>
+// # Pick<Type, Keys>
 
 /**
  * T에서 프로퍼티 K의 집합을 선택해 타입을 구성된다.
@@ -122,17 +120,17 @@ interface PickTK {
   completed: boolean;
 }
 
-type PickPreview = Pick<PickTK, 'title' | 'completed'> // PickTK 타입중에 선택한 타입
+type PickPreview = Pick<PickTK, "title" | "completed">; // PickTK 타입중에 선택한 타입
 
-const PickTK_variable : PickPreview = {
-  title: 'Clean room',
+const PickTK_variable: PickPreview = {
+  title: "Clean room",
   completed: false,
-}
+};
 
-// # Omit<T, K>
+// # Omit<Type, Keys>
 
 /**
- * T에서 모든 프로퍼티를 선택한 다음, K를 제거한 타입을 구성합니다.
+ * Type에서 모든 프로퍼티를 선택한 다음, Key를 제거한 타입을 구성합니다.
  */
 
 interface OmitTK {
@@ -141,37 +139,38 @@ interface OmitTK {
   completed: boolean;
 }
 
-type OmitPreview = Omit<OmitTK, 'description'> // 'description' 제외한 타입을 사용
+type OmitPreview = Omit<OmitTK, "description">; // 'description' 제외한 타입을 사용
 
-const OmitTK_variavle : OmitPreview = {
-  title: 'Clean room',
+const OmitTK_variavle: OmitPreview = {
+  title: "Clean room",
   completed: false,
-}
+};
 
-// # Exclude<T, U>
+// # Exclude<Type, ExcludedUnion>
 
 /**
  * T에서 U에 할당할 수 있는 모든 속성을 제외한 타입을 구성합니다.
  */
 
-type ExcludeT0 = Exclude<"a"|"b"|"c", "a"> // "b" | "c" => "a"를 제외했으니까
-type ExcludeT1 = Exclude<"a"|"b"|"c", "a"|"b"> // "c" => "a"|"b"를 제외했으니까
-type ExcludeT2 = Exclude<string | number | (() => void), Function> // string | number
+type ExcludeT0 = Exclude<"a" | "b" | "c", "a">; // "b" | "c" => "a"를 제외했으니까
+type ExcludeT1 = Exclude<"a" | "b" | "c", "a" | "b">; // "c" => "a"|"b"를 제외했으니까
+type ExcludeT2 = Exclude<string | number | (() => void), Function>; // string | number
 
-// # Extract<T,U>
+// # Extract<Type,Union>
 
 /**
  * T에서 U에 할당 할 수 있는 모든 속성을 추출하여 타입을 구성합니다.
  */
 
-type ExtractT0 = Extract<"a"|"b"|"c", "a"|"f">; // "a" => "a"
-type ExtractT1 = Extract<string | number | (() => void), Function>;  // () => void
+type ExtractT0 = Extract<"a" | "b" | "c", "a" | "f">; // "a" => "a"
+type ExtractT1 = Extract<string | number | (() => void), Function>; // () => void
 
-// # NonNullable<T>
+// # NonNullable<Type>
 
 /**
  * T에서 null과 undefined를 제외한 타입을 구성합니다.
  */
+
 
 type NonNullableT0 = NonNullable<string | number | undefined> // string | number // undefined 제외
 type NonNullableT1 = NonNullable<string[] | null | undefined>; // string[] // null하고 undefined 제외
@@ -187,3 +186,4 @@ declare function ParametersT(arg: {a: number, b: string}): void
 type ParametersT0 = Parameters<() => string>; // []
 type ParametersT1 = Parameters<(s: string) => void>; // [string]
 type ParametersT2 = Parameters<<T>(arg: T) => T> // [unknown]
+

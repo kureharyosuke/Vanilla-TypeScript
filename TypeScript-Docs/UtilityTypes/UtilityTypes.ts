@@ -171,5 +171,19 @@ type ExtractT1 = Extract<string | number | (() => void), Function>; // () => voi
  * T에서 null과 undefined를 제외한 타입을 구성합니다.
  */
 
-type NonNullableT0 = NonNullable<string | number | undefined>; // string | number
-type NonNullableT1 = NonNullable<string[] | null | undefined>; // string[]
+
+type NonNullableT0 = NonNullable<string | number | undefined> // string | number // undefined 제외
+type NonNullableT1 = NonNullable<string[] | null | undefined>; // string[] // null하고 undefined 제외
+
+// # Parameters<T>
+
+/**
+ *  함수 타입의 T의 매개변수(Parameter:파라미터) 타입들의 튜플 타입 타입을 구성합니다.
+ */
+
+declare function ParametersT(arg: {a: number, b: string}): void
+
+type ParametersT0 = Parameters<() => string>; // []
+type ParametersT1 = Parameters<(s: string) => void>; // [string]
+type ParametersT2 = Parameters<<T>(arg: T) => T> // [unknown]
+

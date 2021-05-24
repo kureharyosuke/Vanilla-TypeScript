@@ -35,7 +35,7 @@ interface Product {
 }
 
 // 1. 상품 목록을 받아오기 위한 API 함수
-function fetchProducts(): Promise<Product[]> {}
+// function fetchProducts(): Promise<Product[]> {}
 
 // interface ProductDetail {
 //   id: number;
@@ -128,6 +128,8 @@ interface UserProfile {
 //   profilePhotoUrl?: string;
 // }
 
+//------------------------------------- 코드클린
+
 // #1 파셜의 동작방식 : 옵셔널 타입
 
 type UserProfileUpdate = {
@@ -137,7 +139,7 @@ type UserProfileUpdate = {
   profilePhotoUrl?: UserProfile["profilePhotoUrl"]; // UserProfile.profilePhotoUrl: string
 };
 
-// #2 파셜의 동작방식 : 맵드 타입
+// #2 파셜의 동작방식 : Mapped Type | 맵드 타입
 
 type UserProfileUpdate2 = {
   [p in "username" | "email" | "phone" | "profilePhotoUrl"]?: UserProfile[p];
@@ -156,6 +158,7 @@ type UserProfileUpdate3 = {
 type Subset<T> = {
   [p in keyof T]?: T[p];
 };
-//type Partial<T> = {
-// [P in keyof T]?: T[P];
+
+// type Partial<T> = {
+//   [P in keyof T]?: T[P];
 // };

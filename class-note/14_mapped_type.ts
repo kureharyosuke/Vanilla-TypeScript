@@ -49,5 +49,26 @@ console.log(result); // ['함수', '변수', '인자']
 
 /**
  * 맵드 타입 기본 예제
- *
  */
+
+type Heroes = "Hulk" | "Capt" | "Thor"; // Union Type 유니온 타입
+type HeroArgs = { [K in Heroes]: number }; // Mapped Type 맵드 타입 | 타입을 변환
+
+// type HeroArgs = {
+//    Hulk: number;
+//    Capt: number;
+//    Thor: number;
+// }
+
+const ages: HeroArgs = {
+  Hulk: 33,
+  Capt: 100,
+  Thor: 10000,
+};
+
+// // for in 반복문 코드
+
+// var arr2 = ['a', 'b', 'c']
+// for (var key in arr) {
+//   console.log(arr[key]);
+// }

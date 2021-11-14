@@ -24,9 +24,32 @@ function todo(container: Element) {
     // form in input
     const input = form.elements["text"] as HTMLInputElement;
 
+    // add item
+    addItem(input.value);
     // form reset
     form.reset();
     // form focus
     form.focus();
   });
+
+  //
+  function addItem(itemText: string) {
+    // add li
+    const item = document.createElement("li");
+    // 1. add li in text
+    item.appendChild(document.createTextNode(itemText));
+
+    // checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    // checkbox count
+    checkbox.addEventListener("change", () => recount());
+    // 2. checkbox
+    item.appendChild(checkbox);
+  }
+
+  function recount() {
+    const count = list.querySelectorAll("input:checked").length;
+    done.textContent = `${count} Done`;
+  }
 }

@@ -46,6 +46,17 @@ function todo(container: Element) {
     checkbox.addEventListener("change", () => recount());
     // 2. checkbox
     item.appendChild(checkbox);
+
+    // delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      list.removeChild(item);
+      recount();
+    });
+    item.appendChild(deleteButton);
+
+    list.appendChild(item);
   }
 
   function recount() {

@@ -32,7 +32,7 @@ function todo(container: Element) {
     form.focus();
   });
 
-  //
+  // Add Item
   function addItem(itemText: string) {
     // add li
     const item = document.createElement("li");

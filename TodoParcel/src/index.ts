@@ -22,7 +22,7 @@ function todo(container: Element) {
     event.preventDefault();
 
     // form in input
-    const input = form.elements["text"] as HTMLInputElement;
+    const input: HTMLInputElement = form.elements["text"] as HTMLInputElement;
 
     // add item
     addItem(input.value);
@@ -35,12 +35,12 @@ function todo(container: Element) {
   // Add Item
   function addItem(itemText: string) {
     // add li
-    const item = document.createElement("li");
+    const item: HTMLLIElement = document.createElement("li");
     // 1. add li in text
     item.appendChild(document.createTextNode(itemText));
 
     // checkbox
-    const checkbox = document.createElement("input");
+    const checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
     // checkbox count
     checkbox.addEventListener("change", () => recount());
@@ -48,7 +48,7 @@ function todo(container: Element) {
     item.appendChild(checkbox);
 
     // delete button
-    const deleteButton = document.createElement("button");
+    const deleteButton: HTMLButtonElement = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => {
       list.removeChild(item);
